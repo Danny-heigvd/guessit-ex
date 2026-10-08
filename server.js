@@ -10,7 +10,7 @@ const PORT = 3000;
 // The URL used to connect to the PostgreSQL database. It has the shape
 // postgresql://USER:PASSWORD@HOST:PORT/DATABASE. Change the password to match
 // the one you set when you ran schema.sql.
-const DATABASE_URL = 'postgresql://guessit:dannyheigvd26@localhost:5434/guessit';
+const DATABASE_URL = 'postgresql://guessit:change-me-now@localhost:5432/guessit';
 
 // The colour used for the page's accent (buttons, title). Change it if you
 // like a different look.
@@ -197,7 +197,7 @@ app.post('/games/:id/delete', async (req, res, next) => {
     // Give up.
     //
     // Delete `game` from the database (its ID is `game.id`).
-    const deleteQuery = ''; // <-- IMPLEMENT ME
+    const deleteQuery = `DELETE FROM game WHERE id = '${game.id}'`;// <-- IMPLEMENT ME
     await db.query(deleteQuery);
 
     res.redirect('/');
