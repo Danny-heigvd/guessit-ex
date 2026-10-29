@@ -181,14 +181,8 @@ app.post('/games/:id/guesses', async (req, res, next) => {
       // Add one to the game's attempts. When the guess equals the secret, also
       // set found_at to the current time (NOW()); otherwise leave found_at
       // unchanged. The game to update is `game` (its ID is `game.id`).
-<<<<<<< HEAD
-      const updateQuery = `UPDATE game SET attempts = attempts + 1, found_at = CASE WHEN secret = ${guess} THEN NOW() ELSE found_at END WHERE id = '${game.id}'`;
- // <-- IMPLEMENT ME
-      await db.query(updateQuery);
-=======
       const updateQuery = 'UPDATE game SET attempts = attempts + 1, found_at = CASE WHEN secret = $1 THEN NOW() ELSE found_at END WHERE id = $2';
       await db.query(updateQuery, [guess, game.id]);
->>>>>>> upstream/main
     }
 
     res.redirect('/games/' + game.id + '?guess=' + encodeURIComponent(req.body.guess || ''));
